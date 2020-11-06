@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">KeyboardChecker</string>
+    <string name="noImage">no Image</string>
+
+    <string name="esc">ESC</string>
+    <string name="f1">F1</string>
+    <string name="f2">F2</string>
+    <string name="f3">F3</string>
+    <string name="f4">F4</string>
+    <string name="f5">F5</string>
+    <string name="f6">F6</string>
+    <string name="f7">F7</string>
+    <string name="f8">F8</string>
+    <string name="f9">F9</string>
+    <string name="f10">F10</string>
+    <string name="f11">F11</string>
+    <string name="f12">F12</string>
+
+    <string name="key_wave">~\n`</string>
+    <string name="key1">!\n1</string>
+    <string name="key2">\@\n2</string>
+    <string name="key3">#\n3</string>
+    <string name="key4">$\n4</string>
+    <string name="key5">%\n5</string>
+    <string name="key6">^\n6</string>
+    <string name="key7">&amp;\n7</string>
+    <string name="key8">*\n8</string>
+    <string name="key9">(\n9</string>
+    <string name="key10">)\n0</string>
+    <string name="key11">_\n-</string>
+    <string name="key12">+\n=</string>
+    <string name="back">Back</string>
+    <string name="keypad1">PrtSc</string>
+    <string name="keypad2">ScrLK</string>
+    <string name="keypad3">Pause</string>
+
+    <string name="key_tab">tab</string>
+    <string name="key_q">Q</string>
+    <string name="key_w">W</string>
+    <string name="key_e">E</string>
+    <string name="key_r">R</string>
+    <string name="key_t">T</string>
+    <string name="key_y">Y</string>
+    <string name="key_u">U</string>
+    <string name="key_i">I</string>
+    <string name="key_o">O</string>
+    <string name="key_p">P</string>
+    <string name="key_bracket_open">[</string>
+    <string name="key_bracket_close">]</string>
+    <string name="key_reverse_slash">|\n\\</string>
+    <string name="keypad4">Insert</string>
+    <string name="keypad5">Home</string>
+    <string name="keypad6">PgUp</string>
+
+    <string name="key_capslock">Caps</string>
+    <string name="key_a">A</string>
+    <string name="key_s">S</string>
+    <string name="key_d">D</string>
+    <string name="key_f">F</string>
+    <string name="key_g">G</string>
+    <string name="key_h">H</string>
+    <string name="key_j">J</string>
+    <string name="key_k">K</string>
+    <string name="key_l">L</string>
+    <string name="key_semicolon">;</string>
+    <string name="key_quotes">"\n'</string>
+    <string name="key_return">Enter</string>
+    <string name="keypad7">Delete</string>
+    <string name="keypad8">End</string>
+    <string name="keypad9">PgDn</string>
+
+    <string name="key_shift">Shift</string>
+    <string name="key_z">Z</string>
+    <string name="key_x">X</string>
+    <string name="key_c">C</string>
+    <string name="key_v">V</string>
+    <string name="key_b">B</string>
+    <string name="key_n">N</string>
+    <string name="key_m">M</string>
+    <string name="key_comma">&lt;\n,</string>
+    <string name="key_dot">&gt;\n.</string>
+    <string name="key_slash">/</string>
+    <string name="keypad0">num lock</string>
+
+    <string name="key_fn">fn</string>
+    <string name="key_ctrl">ctrl</string>
+    <string name="key_alt">alt</string>
+    <string name="key_space">space</string>
+    <string name="fn">fn</string>
+
+    <string name="option1">한/영</string>
+    <string name="option2">ctrl</string>
+
+    <string name="LoadFail">LoadFail</string>
+
+    <string name="interstitialAds">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="bannerTestAds">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="bannerAds">ca-app-pub-7832687788012663/6191635265</string>
+    <string name="rewardedTestAds">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="rewardedAds">ca-app-pub-7832687788012663/4779315709</string>
+
+    <string name="plzBackKey">뒤로 버튼을 한번 더 누르면 종료됩니다.</string>
+</resources>

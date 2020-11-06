@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "489184366496",
+    "firebase_url": "https://controller-baa15.firebaseio.com",
+    "project_id": "controller-baa15",
+    "storage_bucket": "controller-baa15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489184366496:android:0b50c906d1d0dcaca95ec5",
+        "android_client_info": {
+          "package_name": "com.moonsu.keyboardchecker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489184366496-a01li4p7jhdjnhevuqfh5ghuvcqvlc5b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj1sI7C4_eKoeSMDfIe6I_ppLpJpiursk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489184366496-a01li4p7jhdjnhevuqfh5ghuvcqvlc5b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
