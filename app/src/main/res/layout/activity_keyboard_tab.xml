@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/layoutdesign"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <requestFocus />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="15">
+
+                <TextView
+                    android:id="@+id/esc"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/esc" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/f1"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f1" />
+
+                <TextView
+                    android:id="@+id/f2"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f2" />
+
+                <TextView
+                    android:id="@+id/f3"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f3" />
+
+                <TextView
+                    android:id="@+id/f4"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f4" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5" />
+
+                <TextView
+                    android:id="@+id/f5"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f5" />
+
+                <TextView
+                    android:id="@+id/f6"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f6" />
+
+                <TextView
+                    android:id="@+id/f7"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f7" />
+
+                <TextView
+                    android:id="@+id/f8"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f8" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5" />
+
+                <TextView
+                    android:id="@+id/f9"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/f9" />
+
+                <TextView
+                    android:id="@+id/f10"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/f10" />
+
+                <TextView
+                    android:id="@+id/f11"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/f11" />
+
+                <TextView
+                    android:id="@+id/f12"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/f12" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="15">
+
+                <TextView
+                    android:id="@+id/grave"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_wave" />
+
+                <TextView
+                    android:id="@+id/key1"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key1" />
+
+                <TextView
+                    android:id="@+id/key2"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key2" />
+
+                <TextView
+                    android:id="@+id/key3"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key3" />
+
+                <TextView
+                    android:id="@+id/key4"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key4" />
+
+                <TextView
+                    android:id="@+id/key5"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key5" />
+
+                <TextView
+                    android:id="@+id/key6"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key6" />
+
+                <TextView
+                    android:id="@+id/key7"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key7" />
+
+                <TextView
+                    android:id="@+id/key8"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key8" />
+
+                <TextView
+                    android:id="@+id/key9"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key9" />
+
+                <TextView
+                    android:id="@+id/key0"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key10" />
+
+                <TextView
+                    android:id="@+id/minus"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key11" />
+
+                <TextView
+                    android:id="@+id/equals"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key12" />
+
+                <TextView
+                    android:id="@+id/backspace"
+                    style="@style/btn_large"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="@string/back" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="15">
+
+                <TextView
+                    android:id="@+id/tab"
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/key_tab" />
+
+                <TextView
+                    android:id="@+id/q"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_q" />
+
+                <TextView
+                    android:id="@+id/w"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_w" />
+
+                <TextView
+                    android:id="@+id/e"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_e" />
+
+                <TextView
+                    android:id="@+id/r"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_r" />
+
+                <TextView
+                    android:id="@+id/t"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_t" />
+
+                <TextView
+                    android:id="@+id/y"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_y" />
+
+                <TextView
+                    android:id="@+id/u"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_u" />
+
+                <TextView
+                    android:id="@+id/i"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_i" />
+
+                <TextView
+                    android:id="@+id/o"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_o" />
+
+                <TextView
+                    android:id="@+id/p"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_p" />
+
+                <TextView
+                    android:id="@+id/left_bracket"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_bracket_open" />
+
+                <TextView
+                    android:id="@+id/right_bracket"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_bracket_close" />
+
+                <TextView
+                    android:id="@+id/backslash"
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/key_reverse_slash" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="15">
+
+                <TextView
+                    android:id="@+id/caps"
+                    style="@style/btn_large"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="@string/key_capslock" />
+
+                <TextView
+                    android:id="@+id/a"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_a" />
+
+                <TextView
+                    android:id="@+id/s"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_s" />
+
+                <TextView
+                    android:id="@+id/d"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_d" />
+
+                <TextView
+                    android:id="@+id/f"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_f" />
+
+                <TextView
+                    android:id="@+id/g"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_g" />
+
+                <TextView
+                    android:id="@+id/h"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_h" />
+
+                <TextView
+                    android:id="@+id/j"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_j" />
+
+                <TextView
+                    android:id="@+id/k"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_k" />
+
+                <TextView
+                    android:id="@+id/l"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_l" />
+
+                <TextView
+                    android:id="@+id/semicolon"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_semicolon" />
+
+                <TextView
+                    android:id="@+id/apostrophe"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_quotes" />
+
+                <TextView
+                    android:id="@+id/enter"
+                    style="@style/btn_large"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="@string/key_return" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="15">
+
+                <TextView
+                    android:id="@+id/leftshift"
+                    style="@style/btn_xlarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:text="@string/key_shift" />
+
+                <TextView
+                    android:id="@+id/z"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_z" />
+
+                <TextView
+                    android:id="@+id/x"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_x" />
+
+                <TextView
+                    android:id="@+id/c"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_c" />
+
+                <TextView
+                    android:id="@+id/v"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_v" />
+
+                <TextView
+                    android:id="@+id/b"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_b" />
+
+                <TextView
+                    android:id="@+id/n"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_n" />
+
+                <TextView
+                    android:id="@+id/m"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_m" />
+
+                <TextView
+                    android:id="@+id/comma"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_comma" />
+
+                <TextView
+                    android:id="@+id/dot"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_dot" />
+
+                <TextView
+                    android:id="@+id/slash"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/key_slash" />
+
+                <TextView
+                    android:id="@+id/rightshift"
+                    style="@style/btn_xlarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:text="@string/key_shift" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="15">
+
+                <TextView
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#444444"
+                    android:text="@string/fn"
+                    android:textColor="#efefef" />
+
+                <TextView
+                    android:id="@+id/leftctrl"
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/key_ctrl" />
+
+                <TextView
+                    android:id="@+id/leftalt"
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/key_alt" />
+
+                <TextView
+                    android:id="@+id/spacebar"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:text="@string/key_space" />
+
+                <TextView
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/option1" />
+
+                <TextView
+                    android:id="@+id/rightctrl"
+                    style="@style/btn_slarge"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/option2" />
+
+                <ImageView
+                    android:id="@+id/rightalt"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/noImage"
+                    android:padding="5dp"
+                    android:src="@drawable/icon_file" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.75"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="40dp"
+            android:paddingRight="60dp">
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/insert"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/keypad4" />
+
+                <TextView
+                    android:id="@+id/home"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/keypad5" />
+
+                <TextView
+                    android:id="@+id/pageup"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/keypad6" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/delete"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/keypad7" />
+
+                <TextView
+                    android:id="@+id/end"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/keypad8" />
+
+                <TextView
+                    android:id="@+id/pagedown"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="@string/keypad9" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:layout_height="56dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/arrowup"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/noImage"
+                    android:padding="15dp"
+                    android:src="@drawable/icon_up" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout_properties"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <ImageView
+                    android:id="@+id/arrowleft"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/noImage"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_left" />
+
+                <ImageView
+                    android:id="@+id/arrowdown"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/noImage"
+                    android:padding="13dp"
+                    android:src="@drawable/icon_down" />
+
+                <ImageView
+                    android:id="@+id/arrowright"
+                    style="@style/btn_mid"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/noImage"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_right" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/keyboardBackButton"
+        style="@style/backbutton" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/bannerTestAds">
+
+    </com.google.android.gms.ads.AdView>
+</RelativeLayout>
+
+    <!--
+    ads:adUnitId="ca-app-pub-7832687788012663/6191635265">
+    -->
