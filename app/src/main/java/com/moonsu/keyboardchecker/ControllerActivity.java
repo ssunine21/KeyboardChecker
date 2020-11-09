@@ -2,8 +2,10 @@ package com.moonsu.keyboardchecker;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -18,7 +20,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class ControllerActivity extends AppCompatActivity {
-
+    private final String TAG = "ControllerActivity";
     private int Device_Width = 0;
 
     private ImageView RT, RB, LT, LB, LS, RS, menu, start, A, B, X, Y, up, down, right, left;
@@ -99,6 +101,7 @@ public class ControllerActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Log.e(TAG, "keyDown" + keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_BUTTON_L1:
                 keyDown(LT, "lt");
@@ -213,11 +216,22 @@ public class ControllerActivity extends AppCompatActivity {
             default:
                 break;
         }
-        return false;
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
+
+    @Override
+    public boolean onGenericMotionEvent(MotionEvent event) {
+
+        int a = MotionEvent.AXIS_RTRIGGER;
+        String b = MotionEvent.axisToString(event.getActionIndex());
+        Log.e(TAG, "" + event.getHistorySize());
+        Log.e(TAG, "" + event.getSource());
+
         return true;
     }
 
