@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdView;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private long BACKKEY_PRESS_TIME = 0;
     private final long BACKKEY_DELAY_TIME = 2000;
+    private final int INTERSTITIALADS_CODE = 1001;
 
     public static final int button_mouse = R.id.button_mouse;
     public static final int button_gamepad = R.id.button_gamepad;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 리워드 광고
         ads.createRewardAds(getString(R.string.rewardedTestAds));
         // 전면 광고
-        ads.createInterstitialAds(getString(R.string.interstitialAds));
+        ads.createInterstitialAds(getString(R.string.interstitialTestAds));
         // 배너 광고
         ads.createBannerAds((AdView) findViewById(R.id.adView));
 
@@ -138,8 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (pageNum) {
             case PAGE_KEYBOARD:
                 intent = new Intent(this, KeyboardActivity.class);
-                startActivity(intent);
-                return;
+                break;
 
             case PAGE_MOUSE:
                 intent = new Intent(this, MouseActivity.class);
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        startActivity(intent);
+        startActivityForResult(intent, INTERSTITIALADS_CODE);
         //ads.rewardedAdsShow(this, intent);
     }
 
@@ -189,5 +190,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         appBilling.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_CANCELED) {
+            if(requestCode == INTERSTITIALADS_CODE) {
+                ads.showInterstitialAds();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

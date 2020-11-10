@@ -25,6 +25,7 @@ class Ads extends RewardedAdCallback {
 
     private RewardedAd rewardedAd;
     private InterstitialAd interstitialAd;
+
     private final Context context;
     private String rewardedId;
 
@@ -60,17 +61,25 @@ class Ads extends RewardedAdCallback {
         interstitialAd = new InterstitialAd(context);
         interstitialAd.setAdUnitId(AdsId);
 
-        interstitialAd.loadAd(new AdRequest.Builder().build());
+        loadInterstitialAds();
 
         interstitialAd.setAdListener(new AdListener(){
-            // TODO:: https://developers.google.com/admob/android/interstitial?hl=ko
+            @Override
+            public void onAdClosed() {
+                loadInterstitialAds();
+            }
         });
+    }
+
+    private void loadInterstitialAds(){
+        interstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     public void createBannerAds(){
 
     }
 
+    // load랑 show를 분기해서 loading될 시간을 주자
     public void showRewardedAds(final Activity activity, final Intent intent) {
         if (System.currentTimeMillis() > REWARDED_PRESS_TIME + REWARDED_DELAY_TIME) {
             if (rewardedAd.isLoaded()) {

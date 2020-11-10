@@ -93,7 +93,7 @@
 
     <string name="LoadFail">LoadFail</string>
 
-    <string name="interstitialAds">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitialTestAds">ca-app-pub-3940256099942544/1033173712</string>
     <string name="bannerTestAds">ca-app-pub-3940256099942544/6300978111</string>
     <string name="bannerAds">ca-app-pub-7832687788012663/6191635265</string>
     <string name="rewardedTestAds">ca-app-pub-3940256099942544/5224354917</string>

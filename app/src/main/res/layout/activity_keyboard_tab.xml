@@ -12,7 +12,6 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <requestFocus />
 
         <LinearLayout
             android:layout_width="match_parent"
