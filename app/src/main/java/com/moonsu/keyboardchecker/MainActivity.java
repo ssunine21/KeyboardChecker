@@ -3,6 +3,7 @@ package com.moonsu.keyboardchecker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private long BACKKEY_PRESS_TIME = 0;
     private final long BACKKEY_DELAY_TIME = 2000;
-    private final int INTERSTITIALADS_CODE = 1001;
+    private final int INTERSTITIALADS_CODE = 1005;
+    private final String TAG = "MainActivity";
 
     public static final int button_mouse = R.id.button_mouse;
     public static final int button_gamepad = R.id.button_gamepad;
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Log.e(TAG, "");
         switch (v.getId()) {
             case button_keyboard:
                 goIntent(PAGE_KEYBOARD);
@@ -162,10 +165,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton button_gamepad = findViewById(R.id.button_gamepad);
         ImageButton button_keyboard = findViewById(R.id.button_keyboard);
         ImageButton button_mouse = findViewById(R.id.button_mouse);
+        ImageButton button_noAds = findViewById(R.id.noAds);
 
         button_gamepad.setOnClickListener(this);
         button_mouse.setOnClickListener(this);
         button_keyboard.setOnClickListener(this);
+        button_noAds.setOnClickListener(this);
     }
 
     @Override
