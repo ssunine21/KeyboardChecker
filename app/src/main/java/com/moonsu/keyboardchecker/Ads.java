@@ -75,10 +75,6 @@ class Ads extends RewardedAdCallback {
         interstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
-    public void createBannerAds(){
-
-    }
-
     // load랑 show를 분기해서 loading될 시간을 주자
     public void showRewardedAds(final Activity activity, final Intent intent) {
         if (System.currentTimeMillis() > REWARDED_PRESS_TIME + REWARDED_DELAY_TIME) {
@@ -140,10 +136,14 @@ class Ads extends RewardedAdCallback {
     }
 
     public void showInterstitialAds(){
-        if(interstitialAd.isLoaded()){
-            interstitialAd.show();
-        } else {
-            showError();
+        try {
+            if (interstitialAd.isLoaded()) {
+                interstitialAd.show();
+            } else {
+                showError();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

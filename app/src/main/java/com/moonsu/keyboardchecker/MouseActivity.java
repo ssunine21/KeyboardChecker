@@ -37,30 +37,15 @@ public class MouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mouse);
         keySetting();
 
-        mouse_container.setOnTouchListener(new View.OnTouchListener(){
+        mouse_container.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event){
-
-                Log.e(TAG, "onTouch" + event.getAction());
-                Log.e(TAG, "onTouch" + event.getButtonState());
+            public boolean onTouch(View v, MotionEvent event) {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         switch (event.getButtonState()) {
                             case MotionEvent.BUTTON_PRIMARY:
                                 mouseKeyDown(mouse_left, "left");
-                                break;
-
-                            case MotionEvent.BUTTON_SECONDARY:
-                                mouseKeyDown(mouse_right, "right");
-                                break;
-
-                            case MotionEvent.BUTTON_FORWARD:
-                                mouseKeyDown(mouse_front, "front");
-                                break;
-
-                            case MotionEvent.BUTTON_BACK:
-                                mouseKeyDown(mouse_back, "back");
                                 break;
                         }
                         break;
@@ -69,18 +54,6 @@ public class MouseActivity extends AppCompatActivity {
                         switch (event.getButtonState()) {
                             case 0:
                                 mouseKeyUp(mouse_left, "left");
-                                break;
-
-                            case MotionEvent.BUTTON_SECONDARY:
-                                mouseKeyUp(mouse_right, "right");
-                                break;
-
-                            case MotionEvent.BUTTON_FORWARD:
-                                mouseKeyUp(mouse_front, "front");
-                                break;
-
-                            case MotionEvent.BUTTON_BACK:
-                                mouseKeyUp(mouse_back, "back");
                                 break;
                         }
                         break;
@@ -94,20 +67,23 @@ public class MouseActivity extends AppCompatActivity {
         });
 
         //광고
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
+            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+                @Override
+                public void onInitializationComplete(InitializationStatus initializationStatus) {
 
-            }
-        });
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+                }
+            });
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        } else {
+            mAdView.setVisibility(View.GONE);
+        }
     }
 
     @Override
     protected void onPause() {
-        if(IS_BUTTON_TERTIARY){
+        if (IS_BUTTON_TERTIARY) {
             IS_BUTTON_TERTIARY = false;
             Toast.makeText(this, "휠 버튼은 홈 키로 작동합니다.", Toast.LENGTH_LONG).show();
         }
@@ -116,24 +92,27 @@ public class MouseActivity extends AppCompatActivity {
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
-        Log.e(TAG, "" + event.getAction());
-        Log.e(TAG, "" + event);
 
-        if(event.getToolType(0) == MotionEvent.TOOL_TYPE_MOUSE){
-            switch (event.getAction()){
+        if (event.getToolType(0) == MotionEvent.TOOL_TYPE_MOUSE) {
+            switch (event.getAction()) {
                 case MotionEvent.ACTION_HOVER_MOVE:
-                    if(event.getButtonState() == MotionEvent.BUTTON_TERTIARY) {
+                    if (event.getButtonState() == MotionEvent.BUTTON_TERTIARY) {
                         mouseKeyDown(mouse_wheel, "wheel");
                         IS_BUTTON_TERTIARY = true;
-                    }
-                    else if (event.getButtonState() == MotionEvent.BUTTON_SECONDARY){
+                    } else if (event.getButtonState() == MotionEvent.BUTTON_SECONDARY) {
                         mouseKeyDown(mouse_right, "right");
+                    } else if (event.getButtonState() == MotionEvent.BUTTON_BACK) {
+                        mouseKeyDown(mouse_back, "back");
+                    } else if (event.getButtonState() == MotionEvent.BUTTON_FORWARD) {
+                        mouseKeyDown(mouse_front, "front");
                     }
                     break;
 
                 case MotionEvent.ACTION_HOVER_ENTER:
                     mouseKeyUp(mouse_wheel, "wheel");
                     mouseKeyUp(mouse_right, "right");
+                    mouseKeyUp(mouse_back, "back");
+                    mouseKeyUp(mouse_front, "front");
                     break;
 
                 case MotionEvent.ACTION_SCROLL:
@@ -141,16 +120,10 @@ public class MouseActivity extends AppCompatActivity {
                     break;
             }
         }
-
-        switch (event.getAction()){
-            case MotionEvent.ACTION_SCROLL:
-
-                break;
-        }
         return true;
     }
 
-    private void onMouseScroll(){
+    private void onMouseScroll() {
         int resID;
         String resName = "@drawable/mouse_scroll";
         resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
@@ -167,20 +140,20 @@ public class MouseActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.e(TAG, "keydown"+keyCode);
-        Log.e(TAG, "keydown"+event.getAction());
+        //Log.e(TAG, "keydown"+event);
+        //Log.e(TAG, "keydown"+event.getAction());
         return false;
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Log.e(TAG, "keyup"+keyCode);
-        Log.e(TAG, "keyup"+event.getAction());
+        //Log.e(TAG, "keyup"+keyCode);
+        //Log.e(TAG, "keyup"+event.getAction());
         return false;
     }
 
 
-    private void mouseKeyDown(ImageView view, String midName){
+    private void mouseKeyDown(ImageView view, String midName) {
         int resID;
         String resName = "@drawable/mouse_" + midName + "_keydown";
         resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
@@ -188,7 +161,7 @@ public class MouseActivity extends AppCompatActivity {
         view.setImageResource(resID);
     }
 
-    private void mouseKeyUp(ImageView view, String midName){
+    private void mouseKeyUp(ImageView view, String midName) {
         int resID;
         String resName = "@drawable/mouse_" + midName + "_keyup";
         resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
@@ -196,13 +169,15 @@ public class MouseActivity extends AppCompatActivity {
         view.setImageResource(resID);
     }
 
-//UserInteraction()
+    //UserInteraction()
     void keySetting() {
         mouse_container = findViewById(R.id.mouse_container);
-        mouse_left  = findViewById(R.id.mouse_left);
+        mouse_left = findViewById(R.id.mouse_left);
         mouse_right = findViewById(R.id.mouse_right);
-        mouse_back  = findViewById(R.id.mouse_line);
+        mouse_back = findViewById(R.id.mouse_back);
+        mouse_front = findViewById(R.id.mouse_front);
         mouse_wheel = findViewById(R.id.mouse_wheel);
+        mAdView = findViewById(R.id.adView);
 
         backButton = findViewById(R.id.mouseBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {

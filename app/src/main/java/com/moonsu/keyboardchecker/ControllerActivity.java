@@ -55,17 +55,18 @@ public class ControllerActivity extends AppCompatActivity {
         keySetting();
 
         //광고
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
+            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+                @Override
+                public void onInitializationComplete(InitializationStatus initializationStatus) {
 
-            }
-        });
-
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
+                }
+            });
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        } else {
+            mAdView.setVisibility(View.GONE);
+        }
     }
 
     private void DeviceSizeCheck() {
@@ -268,6 +269,8 @@ public class ControllerActivity extends AppCompatActivity {
         down = findViewById(R.id.controller_down);
         right = findViewById(R.id.controller_right);
         left = findViewById(R.id.controller_left);
+
+        mAdView = findViewById(R.id.adView);
 
         backButton = findViewById(R.id.controllerBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {

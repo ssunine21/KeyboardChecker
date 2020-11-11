@@ -1,7 +1,9 @@
 package com.moonsu.keyboardchecker;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -23,16 +25,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public final int PAGE_KEYBOARD = 0;
     public final int PAGE_MOUSE = 1;
     public final int PAGE_GAMEPAD = 2;
+    private boolean isPremium = false;
+
+    private int adsCount = 2;
+
+    private SharedPreferences sharedPreferences;
 
     private long BACKKEY_PRESS_TIME = 0;
     private final long BACKKEY_DELAY_TIME = 2000;
-    private final int INTERSTITIALADS_CODE = 1005;
     private final String TAG = "MainActivity";
 
-    public static final int button_mouse = R.id.button_mouse;
-    public static final int button_gamepad = R.id.button_gamepad;
-    public static final int button_keyboard = R.id.button_keyboard;
-    public static final int button_noAds = R.id.noAds;
+    private final int button_mouseId = R.id.button_mouse;
+    private final int button_gamepadId = R.id.button_gamepad;
+    private final int button_keyboardId = R.id.button_keyboard;
+    private final int button_noAdsId = R.id.noAds;
+
+    private ImageButton button_mouse, button_gamepad, button_keyboard, button_noAds;
 
     private Toast toast;
     private Intent intent;
@@ -50,30 +58,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         display = wm.getDefaultDisplay();
         display.getMetrics(dm);
 
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        isPremium = sharedPreferences.getBoolean(Definition.PREMIUM, false);
         DeviceSizeCheck();
 
-        if (Device_Width >= 4) {
-            if (dm.heightPixels < 1232) {
-                setContentView(R.layout.activity_main_tab);
-            } else {
-                setContentView(R.layout.activity_main_tab);
-            }
-        } else {
-            setContentView(R.layout.activity_main_tab);
-        }
+        setContentView(R.layout.activity_main_tab);
 
         keySetting();
-
         ads = new Ads(this);
-        // 리워드 광고
-        ads.createRewardAds(getString(R.string.rewardedTestAds));
-        // 전면 광고
-        ads.createInterstitialAds(getString(R.string.interstitialTestAds));
-        // 배너 광고
-        ads.createBannerAds((AdView) findViewById(R.id.adView));
 
-        appBilling = new InAppBilling(this);
-        appBilling.setPackage();
+        if (isPremium) {
+            String resName = "@drawable/" + Definition.PREMIUM;
+            int resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
+            button_noAds.setImageResource(resID);
+            button_noAds.setOnClickListener(null);
+        } else {
+            appBilling = new InAppBilling(this);
+            appBilling.setPackage();
+
+            // 리워드 광고
+            ads.createRewardAds(getString(R.string.rewardedTestAds));
+            // 전면 광고
+            ads.createInterstitialAds(getString(R.string.interstitialTestAds));
+            // 배너 광고
+            ads.createBannerAds((AdView) findViewById(R.id.adView));
+        }
     }
 
     private void DeviceSizeCheck() {
@@ -111,19 +121,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Log.e(TAG, "");
         switch (v.getId()) {
-            case button_keyboard:
+            case button_keyboardId:
                 goIntent(PAGE_KEYBOARD);
                 break;
 
-            case button_gamepad:
+            case button_gamepadId:
                 goIntent(PAGE_GAMEPAD);
                 break;
 
-            case button_mouse:
+            case button_mouseId:
                 goIntent(PAGE_MOUSE);
                 break;
 
-            case button_noAds:
+            case button_noAdsId:
                 appBilling.getBuy();
                 break;
         }
@@ -157,15 +167,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        startActivityForResult(intent, INTERSTITIALADS_CODE);
+        intent.putExtra(Definition.IS_PREMIUM, isPremium);
+        startActivityForResult(intent, Definition.INTERSTITIALADS_CODE);
         //ads.rewardedAdsShow(this, intent);
     }
 
     private void keySetting() {
-        ImageButton button_gamepad = findViewById(R.id.button_gamepad);
-        ImageButton button_keyboard = findViewById(R.id.button_keyboard);
-        ImageButton button_mouse = findViewById(R.id.button_mouse);
-        ImageButton button_noAds = findViewById(R.id.noAds);
+        button_gamepad = findViewById(R.id.button_gamepad);
+        button_keyboard = findViewById(R.id.button_keyboard);
+        button_mouse = findViewById(R.id.button_mouse);
+        button_noAds = findViewById(R.id.noAds);
 
         button_gamepad.setOnClickListener(this);
         button_mouse.setOnClickListener(this);
@@ -199,9 +210,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_CANCELED) {
-            if(requestCode == INTERSTITIALADS_CODE) {
+        if (requestCode == Definition.INTERSTITIALADS_CODE) {
+            if (--adsCount <= 0) {
+                adsCount = 3;
                 ads.showInterstitialAds();
+            }
+
+        } else if (requestCode == Definition.INAPP_BUY_CODE) {
+            if (resultCode == RESULT_OK) {
+                sharedPreferences.edit().putBoolean(Definition.PREMIUM, true).apply();
+                Toast.makeText(this, "결제에 성공했습니다. 앱을 재실행 해주세요.", Toast.LENGTH_LONG).show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

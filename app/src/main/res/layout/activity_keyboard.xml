@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/layoutdesign"
         android:orientation="horizontal"
-        android:paddingBottom="40dp"
+        android:gravity="center_vertical"
         android:weightSum="1">
 
         <LinearLayout
@@ -733,23 +733,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="0.7"
-            android:layout_height="match_parent" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:background="@color/toneUpGray" />
     </LinearLayout>
 
     <ImageButton

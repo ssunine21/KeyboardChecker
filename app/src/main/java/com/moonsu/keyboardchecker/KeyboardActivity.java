@@ -78,26 +78,27 @@ public class KeyboardActivity extends AppCompatActivity {
         keySetting();
 
         //광고
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
+            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+                @Override
+                public void onInitializationComplete(InitializationStatus initializationStatus) {
 
-            }
-        });
-
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
+                }
+            });
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        } else {
+            mAdView.setVisibility(View.GONE);
+        }
         setOnKey();
     }
 
-    private void setOnKey(){
+    private void setOnKey() {
 
         backButton.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_ESCAPE:
                             keyDown(esc);
@@ -360,7 +361,7 @@ public class KeyboardActivity extends AppCompatActivity {
                         default:
                             break;
                     }
-                } else if (event.getAction() == KeyEvent.ACTION_UP){
+                } else if (event.getAction() == KeyEvent.ACTION_UP) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_ESCAPE:
                             keyUp(esc);
@@ -628,7 +629,6 @@ public class KeyboardActivity extends AppCompatActivity {
     }
 
 
-
     private void DeviceSizeCheck() {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -783,6 +783,8 @@ public class KeyboardActivity extends AppCompatActivity {
         arrowup = findViewById(R.id.arrowup);
 
         container = findViewById(R.id.container);
+
+        mAdView = findViewById(R.id.adView);
 
         backButton = findViewById(R.id.keyboardBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
