@@ -221,19 +221,23 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-        return true;
-    }
-
-    @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
+        float axis_rtrigger = event.getAxisValue(MotionEvent.AXIS_RTRIGGER);
+        float axis_ltrigger = event.getAxisValue(MotionEvent.AXIS_LTRIGGER);
 
-        int a = MotionEvent.AXIS_RTRIGGER;
-        String b = MotionEvent.axisToString(event.getActionIndex());
-        Log.e(TAG, "" + event.getHistorySize());
-        Log.e(TAG, "" + event.getSource());
+        if(axis_ltrigger > 0 ) {
+            keyDown(LB, "lb");
+        } else if (axis_ltrigger == 0){
+            keyUp(LB, "lb");
+        }
 
-        return true;
+        if(axis_rtrigger > 0){
+            keyDown(RB, "rb");
+        } else if (axis_rtrigger == 0){
+            keyUp(RB, "rb");
+        }
+
+        return false;
     }
 
     private void keyDown(ImageView view, String midName) {
