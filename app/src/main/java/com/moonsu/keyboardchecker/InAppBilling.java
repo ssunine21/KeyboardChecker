@@ -7,11 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -30,7 +28,7 @@ class InAppBilling {
     private IInAppBillingService mService;
     private final ServiceConnection mServiceConn;
 
-    public InAppBilling(Activity activity) {
+    public InAppBilling(final MainActivity activity) {
         this.activity = activity;
 
         mServiceConn = new ServiceConnection() {
@@ -43,7 +41,11 @@ class InAppBilling {
             public void onServiceConnected(ComponentName name,
                                            IBinder service) {
                 mService = IInAppBillingService.Stub.asInterface(service);
-                getPurchases();
+                if(getPurchases()){
+                    activity.setPremium();
+                } else{
+                    activity.setAds();
+                }
             }
         };
     }

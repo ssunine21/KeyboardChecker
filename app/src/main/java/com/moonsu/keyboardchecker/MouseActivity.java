@@ -3,8 +3,6 @@ package com.moonsu.keyboardchecker;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -137,21 +135,6 @@ public class MouseActivity extends AppCompatActivity {
             }
         }, 500);
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        //Log.e(TAG, "keydown"+event);
-        //Log.e(TAG, "keydown"+event.getAction());
-        return false;
-    }
-
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        //Log.e(TAG, "keyup"+keyCode);
-        //Log.e(TAG, "keyup"+event.getAction());
-        return false;
-    }
-
 
     private void mouseKeyDown(ImageView view, String midName) {
         int resID;

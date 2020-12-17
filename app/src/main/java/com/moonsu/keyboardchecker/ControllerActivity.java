@@ -23,7 +23,7 @@ public class ControllerActivity extends AppCompatActivity {
     private final String TAG = "ControllerActivity";
     private int Device_Width = 0;
 
-    private ImageView RT, RB, LT, LB, LS, RS, menu, start, A, B, X, Y, up, down, right, left;
+    private ImageView RB, RT, LB, LT, LS, RS, menu, start, A, B, X, Y, up, down, right, left;
     private ImageButton backButton;
     private AdView mAdView;
 
@@ -42,15 +42,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         DeviceSizeCheck();
 
-        if (Device_Width >= 4) {
-            if (dm.heightPixels < 1232) {
-                setContentView(R.layout.activity_controller);
-            } else {
-                setContentView(R.layout.activity_controller);
-            }
-        } else {
-            setContentView(R.layout.activity_controller);
-        }
+        setContentView(R.layout.activity_controller);
 
         keySetting();
 
@@ -105,16 +97,16 @@ public class ControllerActivity extends AppCompatActivity {
         Log.e(TAG, "keyDown" + keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_BUTTON_L1:
-                keyDown(LT, "lt");
-                return true;
-            case KeyEvent.KEYCODE_BUTTON_R1:
-                keyDown(RT, "rt");
-                return true;
-            case KeyEvent.KEYCODE_BUTTON_L2:
                 keyDown(LB, "lb");
                 return true;
-            case KeyEvent.KEYCODE_BUTTON_R2:
+            case KeyEvent.KEYCODE_BUTTON_R1:
                 keyDown(RB, "rb");
+                return true;
+            case KeyEvent.KEYCODE_BUTTON_L2:
+                keyDown(LT, "lt");
+                return true;
+            case KeyEvent.KEYCODE_BUTTON_R2:
+                keyDown(RT, "rt");
                 return true;
             case KeyEvent.KEYCODE_BUTTON_THUMBL:
                 keyDown(LS, "ls");
@@ -166,16 +158,16 @@ public class ControllerActivity extends AppCompatActivity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BUTTON_L1:
-                keyUp(LT, "lt");
-                return true;
-            case KeyEvent.KEYCODE_BUTTON_R1:
-                keyUp(RT, "rt");
-                return true;
-            case KeyEvent.KEYCODE_BUTTON_L2:
                 keyUp(LB, "lb");
                 return true;
-            case KeyEvent.KEYCODE_BUTTON_R2:
+            case KeyEvent.KEYCODE_BUTTON_R1:
                 keyUp(RB, "rb");
+                return true;
+            case KeyEvent.KEYCODE_BUTTON_L2:
+                keyUp(LT, "lt");
+                return true;
+            case KeyEvent.KEYCODE_BUTTON_R2:
+                keyUp(RT, "rt");
                 return true;
             case KeyEvent.KEYCODE_BUTTON_THUMBL:
                 keyUp(LS, "ls");
@@ -225,16 +217,19 @@ public class ControllerActivity extends AppCompatActivity {
         float axis_rtrigger = event.getAxisValue(MotionEvent.AXIS_RTRIGGER);
         float axis_ltrigger = event.getAxisValue(MotionEvent.AXIS_LTRIGGER);
 
+        Log.e(TAG, ""+axis_ltrigger);
+        Log.e(TAG, ""+axis_rtrigger);
+
         if(axis_ltrigger > 0 ) {
-            keyDown(LB, "lb");
+            keyDown(LT, "lt");
         } else if (axis_ltrigger == 0){
-            keyUp(LB, "lb");
+            keyUp(LT, "lt");
         }
 
         if(axis_rtrigger > 0){
-            keyDown(RB, "rb");
+            keyDown(RT, "rt");
         } else if (axis_rtrigger == 0){
-            keyUp(RB, "rb");
+            keyUp(RT, "rt");
         }
 
         return false;
@@ -257,10 +252,10 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     void keySetting() {
-        RT = findViewById(R.id.controller_RT);
         RB = findViewById(R.id.controller_RB);
-        LT = findViewById(R.id.controller_LT);
+        RT = findViewById(R.id.controller_RT);
         LB = findViewById(R.id.controller_LB);
+        LT = findViewById(R.id.controller_LT);
         LS = findViewById(R.id.controller_LS);
         RS = findViewById(R.id.controller_RS);
         menu = findViewById(R.id.controller_menuL);

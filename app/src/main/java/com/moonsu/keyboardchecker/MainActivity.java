@@ -66,24 +66,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main_tab);
 
         keySetting();
-        ads = new Ads(this);
 
         if (isPremium) {
-            String resName = "@drawable/" + Definition.PREMIUM;
-            int resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
-            button_noAds.setImageResource(resID);
-            button_noAds.setOnClickListener(null);
+            setPremium();
         } else {
+            ads = new Ads(this);
             appBilling = new InAppBilling(this);
             appBilling.setPackage();
-
-            // 리워드 광고
-            ads.createRewardAds(getString(R.string.rewardedTestAds));
-            // 전면 광고
-            ads.createInterstitialAds(getString(R.string.interstitialTestAds));
-            // 배너 광고
-            ads.createBannerAds((AdView) findViewById(R.id.adView));
         }
+    }
+
+    public void setPremium(){
+        String resName = "@drawable/" + Definition.PREMIUM;
+        int resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
+        button_noAds.setImageResource(resID);
+        button_noAds.setOnClickListener(null);
+        sharedPreferences.edit().putBoolean(Definition.PREMIUM, true).apply();
+        isPremium = sharedPreferences.getBoolean(Definition.PREMIUM, false);
+    }
+
+    public void setAds(){
+        // 리워드 광고
+        ads.createRewardAds(getString(R.string.rewardedTestAds));
+        // 전면 광고
+        ads.createInterstitialAds(getString(R.string.interstitialAds));
+        // 배너 광고
+        ads.createBannerAds((AdView) findViewById(R.id.adView));
     }
 
     private void DeviceSizeCheck() {
@@ -205,15 +213,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        appBilling.onDestroy();
+        if(appBilling != null) {
+            appBilling.onDestroy();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == Definition.INTERSTITIALADS_CODE) {
-            if (--adsCount <= 0) {
-                adsCount = 3;
-                ads.showInterstitialAds();
+            if(!isPremium) {
+                if (--adsCount <= 0) {
+                    try {
+                        adsCount = 3;
+                        ads.showInterstitialAds();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
 
         } else if (requestCode == Definition.INAPP_BUY_CODE) {

@@ -14,12 +14,28 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/trigger"
+            android:gravity="center">
+
+            <ProgressBar
+                android:id="@+id/ltProgressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:rotation="270"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:progress="0"
+                android:max="100"/>
+
         <RelativeLayout
             android:id="@+id/controller_main"
             android:layout_width="490dp"
             android:layout_height="320dp"
-            android:layout_below="@+id/trigger"
-            android:layout_centerHorizontal="true"
             android:gravity="center">
 
             <ImageView
@@ -28,8 +44,18 @@
                 android:contentDescription="@string/LoadFail"
 
                 android:scaleType="fitCenter"
-                android:src="@drawable/controller_main" />
+                android:src="@drawable/controllermain" />
         </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/rtProgressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:rotation="270"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:progress="0"
+                android:max="100"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/trigger"
@@ -41,29 +67,29 @@
             android:weightSum="4">
 
             <ImageView
-                android:id="@+id/controller_LB"
+                android:id="@+id/controller_LT"
                 style="@style/triggerButton"
                 android:layout_width="50dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/controller_lb" />
-
-            <ImageView
-                android:id="@+id/controller_LT"
-                style="@style/triggerButton"
-                android:layout_marginEnd="100dp"
                 android:src="@drawable/controller_lt" />
 
             <ImageView
-                android:id="@+id/controller_RT"
+                android:id="@+id/controller_LB"
                 style="@style/triggerButton"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/controller_rt" />
+                android:layout_marginEnd="100dp"
+                android:src="@drawable/controller_lb" />
 
             <ImageView
                 android:id="@+id/controller_RB"
                 style="@style/triggerButton"
-                android:layout_width="50dp"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/controller_rb" />
+
+            <ImageView
+                android:id="@+id/controller_RT"
+                style="@style/triggerButton"
+                android:layout_width="50dp"
+                android:src="@drawable/controller_rt" />
         </LinearLayout>
 
         <LinearLayout
@@ -196,5 +222,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/bannerTestAds"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="@string/bannerAds"></com.google.android.gms.ads.AdView>
 </RelativeLayout>
