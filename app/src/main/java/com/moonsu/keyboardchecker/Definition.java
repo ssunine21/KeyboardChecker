@@ -6,4 +6,6 @@ public class Definition {
 
     public static final String PREMIUM = "premium";
     public static final String IS_PREMIUM = "isPremium";
+
+    public static String skuType = "inapp";
 }
