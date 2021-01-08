@@ -20,7 +20,7 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Ads ads;
-    private BillingImpl billingImpl;
+    private BillingImpl billingImpl = null;
 
     public final int PAGE_KEYBOARD = 0;
     public final int PAGE_MOUSE = 1;
@@ -68,13 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         keySetting();
 
         billingImpl = new BillingImpl(this);
-
-        if (isPremium) {
-            setPremium();
-        } else {
-            appBilling = new InAppBilling(this);
-            appBilling.setPackage();
-        }
     }
 
     public void setPremium(){
@@ -88,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void setAds(){
         ads = new Ads(this);
+
         // 리워드 광고
         ads.createRewardAds(getString(R.string.rewardedTestAds));
         // 전면 광고
@@ -144,10 +138,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case button_noAdsId:
-                appBilling.getBuy();
+                billingImpl.queryAvailableProducts();
                 break;
         }
     }
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -210,14 +206,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         moveTaskToBack(true);
         toast.cancel();
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(appBilling != null) {
-            appBilling.onDestroy();
-        }
     }
 
     @Override

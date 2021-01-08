@@ -7,6 +7,7 @@ import com.android.billingclient.api.*
 class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
     private val TAG = "BillingImpl"
     private var isPremium = false;
+    var skuDetails = mutableListOf<SkuDetails>()
     private var billingClient = BillingClient.newBuilder(activity)
             .setListener(this)
             .enablePendingPurchases()
@@ -24,6 +25,27 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
         })
     }
 
+    fun queryAvailableProducts() {
+        val skuToSell = Definition.PREMIUM
+        val skuList = mutableListOf<String>()
+        skuList.add(skuToSell)
+
+        val params = SkuDetailsParams.newBuilder()
+        params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
+        billingClient.querySkuDetailsAsync(params.build(),
+                object : SkuDetailsResponseListener {
+                    override fun onSkuDetailsResponse(p0: BillingResult, p1: MutableList<SkuDetails>?) {
+                        if (p1 != null) {
+                            skuDetails = p1
+                            val purchaseParams = BillingFlowParams.newBuilder()
+                                    .setSkuDetails(skuDetails[0])
+                                    .build()
+                            billingClient.launchBillingFlow(activity, purchaseParams)
+                        }
+                    }
+                })
+    }
+
     override fun onPurchasesUpdated(p0: BillingResult, p1: MutableList<Purchase>?) {
         TODO("Not yet implemented")
     }
@@ -33,7 +55,7 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
             if (billingClient.queryPurchases(Definition.skuType).responseCode == BillingClient.BillingResponseCode.OK) {
                 for (purchase in billingClient.queryPurchases(Definition.skuType).purchasesList.orEmpty()) {
                     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                        isPremium = true
+                        activity.setPremium()
                     } else if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
                         handlePurchase(purchase)
                     } else {
@@ -54,10 +76,10 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
 
                 billingClient.acknowledgePurchase(acknowledgePurchaseParams.build()) {
                     Toast.makeText(activity, "결제 되었습니다.", Toast.LENGTH_SHORT).show()
-                    isPremium = true
+                    activity.setPremium()
                 }
             } else {
-                isPremium = true
+                activity.setPremium()
             }
         }
     }
