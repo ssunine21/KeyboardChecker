@@ -20,7 +20,7 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Ads ads;
-    private BillingImpl billingImpl = null;
+    public BillingImpl billingImpl = null;
 
     public final int PAGE_KEYBOARD = 0;
     public final int PAGE_MOUSE = 1;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         billingImpl = new BillingImpl(this);
     }
 
-    public void setPremium(){
+    public void setPremium() {
         String resName = "@drawable/" + Definition.PREMIUM;
         int resID = getResources().getIdentifier(resName, "drawable", this.getPackageName());
         button_noAds.setImageResource(resID);

@@ -1,8 +1,9 @@
-package com.moonsu.keyboardchecker
+ package com.moonsu.keyboardchecker
 
 import android.app.Activity
 import android.widget.Toast
 import com.android.billingclient.api.*
+ import com.moonsu.keyboardchecker.BillingImpl
 
 class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
     private val TAG = "BillingImpl"
