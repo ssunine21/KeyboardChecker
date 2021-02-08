@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        isPremium = sharedPreferences.getBoolean(Definition.PREMIUM, false);
         DeviceSizeCheck();
 
         setContentView(R.layout.activity_main_tab);
@@ -76,14 +75,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_noAds.setImageResource(resID);
         button_noAds.setOnClickListener(null);
         sharedPreferences.edit().putBoolean(Definition.PREMIUM, true).apply();
-        isPremium = sharedPreferences.getBoolean(Definition.PREMIUM, false);
+        isPremium = true;
     }
 
     public void setAds(){
         ads = new Ads(this);
 
         // 리워드 광고
-        ads.createRewardAds(getString(R.string.rewardedTestAds));
+        ads.createRewardAds(getString(R.string.rewardedAds));
         // 전면 광고
         ads.createInterstitialAds(getString(R.string.interstitialAds));
         // 배너 광고
@@ -173,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        intent.putExtra(Definition.IS_PREMIUM, isPremium);
         startActivityForResult(intent, Definition.INTERSTITIALADS_CODE);
         //ads.rewardedAdsShow(this, intent);
     }

@@ -27,6 +27,8 @@ public class ControllerActivity extends AppCompatActivity {
     private ImageButton backButton;
     private AdView mAdView;
 
+    boolean isDpad = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,16 +135,20 @@ public class ControllerActivity extends AppCompatActivity {
                 keyDown(B, "b");
                 return true;
             case KeyEvent.KEYCODE_DPAD_UP:
-                keyDown(up, "up");
+                if (isDpad)
+                    keyDown(up, "up");
                 return true;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                keyDown(down, "down");
+                if (isDpad)
+                    keyDown(down, "down");
                 return true;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                keyDown(left, "left");
+                if (isDpad)
+                    keyDown(left, "left");
                 return true;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                keyDown(right, "right");
+                if (isDpad)
+                    keyDown(right, "right");
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 finish();
@@ -214,21 +220,37 @@ public class ControllerActivity extends AppCompatActivity {
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
-        float axis_rtrigger = event.getAxisValue(MotionEvent.AXIS_RTRIGGER);
         float axis_ltrigger = event.getAxisValue(MotionEvent.AXIS_LTRIGGER);
+        float axis_rtrigger = event.getAxisValue(MotionEvent.AXIS_RTRIGGER);
+        float axis_rtriggera = event.getAxisValue(MotionEvent.AXIS_THROTTLE);
+        float axis_LX = event.getAxisValue(MotionEvent.AXIS_X);
+        float axis_LY = event.getAxisValue(MotionEvent.AXIS_Y);
+        float axis_RX = event.getAxisValue(MotionEvent.AXIS_Z);
+        float axis_RY = event.getAxisValue(MotionEvent.AXIS_RZ);
 
-        Log.e(TAG, ""+axis_ltrigger);
-        Log.e(TAG, ""+axis_rtrigger);
+        if (Math.abs(axis_LX) > 1 || Math.abs(axis_LY) > 1)
+            isDpad = true;
+        else
+            isDpad = false;
 
-        if(axis_ltrigger > 0 ) {
+
+        Log.e(TAG, "" + event);
+        Log.e(TAG, "" + axis_ltrigger);
+        Log.e(TAG, "" + axis_rtrigger);
+
+        Log.e(TAG, "x : " + axis_LX + " / y : " + axis_LY);
+        Log.e(TAG, "z : " + axis_RX + " / rz : " + axis_RY);
+
+
+        if (axis_ltrigger > 0) {
             keyDown(LT, "lt");
-        } else if (axis_ltrigger == 0){
+        } else if (axis_ltrigger == 0) {
             keyUp(LT, "lt");
         }
 
-        if(axis_rtrigger > 0){
+        if (axis_rtrigger > 0) {
             keyDown(RT, "rt");
-        } else if (axis_rtrigger == 0){
+        } else if (axis_rtrigger == 0) {
             keyUp(RT, "rt");
         }
 

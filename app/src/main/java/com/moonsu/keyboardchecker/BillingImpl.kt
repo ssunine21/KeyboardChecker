@@ -1,9 +1,7 @@
- package com.moonsu.keyboardchecker
+package com.moonsu.keyboardchecker
 
-import android.app.Activity
 import android.widget.Toast
 import com.android.billingclient.api.*
- import com.moonsu.keyboardchecker.BillingImpl
 
 class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
     private val TAG = "BillingImpl"
@@ -56,7 +54,8 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
             if (billingClient.queryPurchases(Definition.skuType).responseCode == BillingClient.BillingResponseCode.OK) {
                 for (purchase in billingClient.queryPurchases(Definition.skuType).purchasesList.orEmpty()) {
                     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                        activity.setPremium()
+                         //activity.setPremium()
+                        activity.setAds()
                     } else if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
                         handlePurchase(purchase)
                     } else {
