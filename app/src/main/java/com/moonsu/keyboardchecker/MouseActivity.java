@@ -12,15 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-
 public class MouseActivity extends AppCompatActivity {
     private final String TAG = "MouseActivity";
-    private AdView mAdView;
+    //private AdView mAdView;
     private boolean IS_BUTTON_TERTIARY = false;
 
     private RelativeLayout mouse_container;
@@ -65,18 +59,18 @@ public class MouseActivity extends AppCompatActivity {
         });
 
         //광고
-        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
-            MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-                }
-            });
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-        } else {
-            mAdView.setVisibility(View.GONE);
-        }
+//        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
+//            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//                @Override
+//                public void onInitializationComplete(InitializationStatus initializationStatus) {
+//
+//                }
+//            });
+//            AdRequest adRequest = new AdRequest.Builder().build();
+//            mAdView.loadAd(adRequest);
+//        } else {
+//            mAdView.setVisibility(View.GONE);
+//        }
     }
 
     @Override
@@ -160,7 +154,7 @@ public class MouseActivity extends AppCompatActivity {
         mouse_back = findViewById(R.id.mouse_back);
         mouse_front = findViewById(R.id.mouse_front);
         mouse_wheel = findViewById(R.id.mouse_wheel);
-        mAdView = findViewById(R.id.adView);
+        //mAdView = findViewById(R.id.adView);
 
         backButton = findViewById(R.id.mouseBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {

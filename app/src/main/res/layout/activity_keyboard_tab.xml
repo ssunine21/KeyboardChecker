@@ -740,18 +740,18 @@
         android:id="@+id/keyboardBackButton"
         style="@style/backbutton" />
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/bannerAds">
+<!--    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/adView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:focusable="false"-->
+<!--        android:focusableInTouchMode="false"-->
+<!--        ads:adSize="BANNER"-->
+<!--        ads:adUnitId="@string/bannerAds">-->
 
-    </com.google.android.gms.ads.AdView>
+<!--    </com.google.android.gms.ads.AdView>-->
 </RelativeLayout>
 
     <!--

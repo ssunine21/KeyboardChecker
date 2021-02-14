@@ -103,9 +103,9 @@
     rewardTestAds  ca-app-pub-3940256099942544/5224354917
     rewardAds      ca-app-pub-7832687788012663/4779315709
     -->
-    <string name="bannerAds">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitialAds">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="rewardedAds">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="bannerAds">ca-app-pub-7832687788012663/6191635265</string>
+    <string name="interstitialAds">ca-app-pub-7832687788012663/8905768139</string>
+    <string name="rewardedAds">ca-app-pub-7832687788012663/4779315709</string>
 
     <string name="plzBackKey">뒤로 버튼을 한번 더 누르면 종료됩니다.</string>
 </resources>

@@ -3,12 +3,10 @@ package com.moonsu.keyboardchecker;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.method.KeyListener;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -19,12 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class KeyboardActivity extends AppCompatActivity {
     private final String TAG = "KeyboardActivity";
@@ -46,7 +38,7 @@ public class KeyboardActivity extends AppCompatActivity {
     private Animation keydown_animation;
     private Animation keyup_animation;
 
-    private AdView mAdView;
+    //private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,19 +69,19 @@ public class KeyboardActivity extends AppCompatActivity {
         keyup_animation = AnimationUtils.loadAnimation(this, R.anim.keyup);
         keySetting();
 
-        //광고
-        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
-            MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-                }
-            });
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-        } else {
-            mAdView.setVisibility(View.GONE);
-        }
+//        //광고
+//        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
+//            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//                @Override
+//                public void onInitializationComplete(InitializationStatus initializationStatus) {
+//
+//                }
+//            });
+//            AdRequest adRequest = new AdRequest.Builder().build();
+//            mAdView.loadAd(adRequest);
+//        } else {
+//            mAdView.setVisibility(View.GONE);
+//        }
         setOnKey();
     }
 
@@ -784,7 +776,7 @@ public class KeyboardActivity extends AppCompatActivity {
 
         container = findViewById(R.id.container);
 
-        mAdView = findViewById(R.id.adView);
+        //mAdView = findViewById(R.id.adView);
 
         backButton = findViewById(R.id.keyboardBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {

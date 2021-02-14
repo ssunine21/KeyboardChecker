@@ -1,5 +1,6 @@
 package com.moonsu.keyboardchecker;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -10,29 +11,32 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import java.util.Locale;
 
 public class ControllerActivity extends AppCompatActivity {
     private final String TAG = "ControllerActivity";
     private int Device_Width = 0;
 
     private ImageView RB, RT, LB, LT, LS, RS, menu, start, A, B, X, Y, up, down, right, left;
-    private ImageButton backButton;
-    private AdView mAdView;
+    private ProgressBar ltProgressBar, rtProgressBar;
+    private TextView lPadPositionText, rPadPositionText;
+    private ImageButton backButton, closeButton;
+    private RelativeLayout controllerGuideContainer;
 
-    boolean isDpad = false;
+    private SharedPreferences sharedPreferences;
+//    private AdView mAdView;
+
+    boolean isDpad = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         DisplayMetrics dm;
         Display display;
         WindowManager wm;
@@ -45,22 +49,28 @@ public class ControllerActivity extends AppCompatActivity {
         DeviceSizeCheck();
 
         setContentView(R.layout.activity_controller);
-
         keySetting();
 
-        //광고
-        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
-            MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(InitializationStatus initializationStatus) {
+        sharedPreferences = getSharedPreferences("sFile", MODE_PRIVATE);
+        boolean isControllerGuideOpen = sharedPreferences.getBoolean("isControllerGuideOpen", true);
 
-                }
-            });
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-        } else {
-            mAdView.setVisibility(View.GONE);
+        if(!isControllerGuideOpen){
+            controllerGuideContainer.setVisibility(View.GONE);
         }
+
+        //광고
+//        if (!getIntent().getBooleanExtra(Definition.IS_PREMIUM, false)) {
+//            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//                @Override
+//                public void onInitializationComplete(InitializationStatus initializationStatus) {
+//
+//                }
+//            });
+//            AdRequest adRequest = new AdRequest.Builder().build();
+//            mAdView.loadAd(adRequest);
+//        } else {
+//            mAdView.setVisibility(View.GONE);
+//        }
     }
 
     private void DeviceSizeCheck() {
@@ -135,20 +145,16 @@ public class ControllerActivity extends AppCompatActivity {
                 keyDown(B, "b");
                 return true;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (isDpad)
-                    keyDown(up, "up");
+                onDPad(up, "up");
                 return true;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isDpad)
-                    keyDown(down, "down");
+                onDPad(down, "down");
                 return true;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (isDpad)
-                    keyDown(left, "left");
+                onDPad(left, "left");
                 return true;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (isDpad)
-                    keyDown(right, "right");
+                onDPad(right, "right");
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 finish();
@@ -220,41 +226,69 @@ public class ControllerActivity extends AppCompatActivity {
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
-        float axis_ltrigger = event.getAxisValue(MotionEvent.AXIS_LTRIGGER);
-        float axis_rtrigger = event.getAxisValue(MotionEvent.AXIS_RTRIGGER);
-        float axis_rtriggera = event.getAxisValue(MotionEvent.AXIS_THROTTLE);
-        float axis_LX = event.getAxisValue(MotionEvent.AXIS_X);
-        float axis_LY = event.getAxisValue(MotionEvent.AXIS_Y);
-        float axis_RX = event.getAxisValue(MotionEvent.AXIS_Z);
-        float axis_RY = event.getAxisValue(MotionEvent.AXIS_RZ);
-
-        if (Math.abs(axis_LX) > 1 || Math.abs(axis_LY) > 1)
-            isDpad = true;
-        else
-            isDpad = false;
-
-
-        Log.e(TAG, "" + event);
-        Log.e(TAG, "" + axis_ltrigger);
-        Log.e(TAG, "" + axis_rtrigger);
-
-        Log.e(TAG, "x : " + axis_LX + " / y : " + axis_LY);
-        Log.e(TAG, "z : " + axis_RX + " / rz : " + axis_RY);
-
-
-        if (axis_ltrigger > 0) {
-            keyDown(LT, "lt");
-        } else if (axis_ltrigger == 0) {
-            keyUp(LT, "lt");
-        }
-
-        if (axis_rtrigger > 0) {
-            keyDown(RT, "rt");
-        } else if (axis_rtrigger == 0) {
-            keyUp(RT, "rt");
-        }
+        setLTrigger(event.getAxisValue(MotionEvent.AXIS_LTRIGGER));
+        setRTrigger(event.getAxisValue(MotionEvent.AXIS_RTRIGGER));
+        setLPad(event.getAxisValue(MotionEvent.AXIS_X), event.getAxisValue(MotionEvent.AXIS_Y));
+        setRPad(event.getAxisValue(MotionEvent.AXIS_Z), event.getAxisValue(MotionEvent.AXIS_RZ));
 
         return false;
+    }
+
+    private void setLTrigger(float axis_ltrigger) {
+        if (axis_ltrigger > 0) {
+            keyDown(LT, "lt");
+            ltProgressBar.setProgress(convertToPercent(axis_ltrigger));
+        } else if (axis_ltrigger <= 0) {
+            keyUp(LT, "lt");
+            ltProgressBar.setProgress(0);
+        }
+    }
+
+    private void setRTrigger(float axis_rtrigger) {
+        if (axis_rtrigger > 0) {
+            keyDown(RT, "rt");
+            rtProgressBar.setProgress(convertToPercent(axis_rtrigger));
+        } else if (axis_rtrigger <= 0) {
+            keyUp(RT, "rt");
+            rtProgressBar.setProgress(0);
+        }
+    }
+
+    private void setLPad(float axis_x, float axis_y) {
+        if (axis_x <= 0.1 && axis_y <= 0.1) {
+            keyUp(LS, "ls");
+        } else {
+            keyDown(LS, "ls");
+        }
+
+        String text;
+        text = "x : " + String.format(Locale.getDefault(), "%.1f", axis_x) +
+                "\n" + "y : " + String.format(Locale.getDefault(), "%.1f", axis_y);
+
+        lPadPositionText.setText(text);
+    }
+
+    private void setRPad(float axis_z, float axis_rz) {
+        if (axis_z <= 0.1 && axis_rz <= 0.1)
+            keyUp(RS, "rs");
+        else
+            keyDown(RS, "rs");
+
+        String text;
+        text = "x : " + String.format(Locale.getDefault(), "%.1f", axis_z) +
+                "\n" + "y : " + String.format(Locale.getDefault(), "%.1f", axis_rz);
+
+        rPadPositionText.setText(text);
+    }
+
+    private int convertToPercent(float curr) {
+        int result = (int) (curr * 100);
+        return result;
+    }
+
+    private void onDPad(ImageView view, String midName) {
+        if (isDpad)
+            keyDown(view, midName);
     }
 
     private void keyDown(ImageView view, String midName) {
@@ -291,8 +325,28 @@ public class ControllerActivity extends AppCompatActivity {
         right = findViewById(R.id.controller_right);
         left = findViewById(R.id.controller_left);
 
-        mAdView = findViewById(R.id.adView);
+        ltProgressBar = findViewById(R.id.ltProgressBar);
+        rtProgressBar = findViewById(R.id.rtProgressBar);
 
+        lPadPositionText = findViewById(R.id.lPadPositionText);
+        rPadPositionText = findViewById(R.id.rPadPositionText);
+
+
+        controllerGuideContainer = findViewById(R.id.controllerGuideContainer);
+
+        //mAdView = findViewById(R.id.adView);
+
+        closeButton = findViewById(R.id.controllerGuideCloseButton);
+        closeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                backButton.setVisibility(View.VISIBLE);
+                controllerGuideContainer.setVisibility(View.GONE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isControllerGuideOpen", false);
+                editor.apply();
+            }
+        });
         backButton = findViewById(R.id.controllerBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

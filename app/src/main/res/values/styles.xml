@@ -101,12 +101,15 @@
         <item name="android:layout_height">40dp</item>
     </style>
 
-    <style name="backbutton">
+    <style name="icon">
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
-        <item name="android:src">@drawable/backbutton</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="backbutton" parent="icon">
+        <item name="android:src">@drawable/backbutton</item>
     </style>
 </resources>

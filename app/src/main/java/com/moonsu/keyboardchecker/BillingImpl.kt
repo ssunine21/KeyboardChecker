@@ -54,8 +54,8 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
             if (billingClient.queryPurchases(Definition.skuType).responseCode == BillingClient.BillingResponseCode.OK) {
                 for (purchase in billingClient.queryPurchases(Definition.skuType).purchasesList.orEmpty()) {
                     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                         //activity.setPremium()
-                        activity.setAds()
+                        activity.setPremium()
+                        //activity.setAds()
                     } else if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
                         handlePurchase(purchase)
                     } else {

@@ -7,7 +7,8 @@
 
     <ImageButton
         android:id="@+id/controllerBackButton"
-        style="@style/backbutton" />
+        style="@style/backbutton"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:id="@+id/contentContainer"
@@ -25,21 +26,35 @@
             android:orientation="horizontal"
             android:weightSum="3">
 
-            <ProgressBar
-                android:id="@+id/ltProgressBar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="0"
-                android:rotation="270" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lPadPositionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x : 0.0 \n y : 0.0" />
+
+                <ProgressBar
+                    android:id="@+id/ltProgressBar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="70dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:rotation="270" />
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/controller_main"
                 android:layout_width="490dp"
                 android:layout_height="330dp"
-                android:padding="20dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:padding="20dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -50,14 +65,28 @@
                     android:src="@drawable/controllermain" />
             </RelativeLayout>
 
-            <ProgressBar
-                android:id="@+id/rtProgressBar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="0"
-                android:rotation="270" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rPadPositionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x : 0.0 \n y : 0.0" />
+
+                <ProgressBar
+                    android:id="@+id/rtProgressBar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="70dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:rotation="270" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -106,11 +135,12 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
+
             <ImageView
                 android:id="@+id/controller_LS"
                 style="@style/largeBtn"
                 android:layout_weight="1"
-                android:paddingEnd="30dp"
+                android:paddingEnd="25dp"
                 android:src="@drawable/controller_ls" />
 
             <ImageView
@@ -218,13 +248,25 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-
+    <RelativeLayout
+        android:id="@+id/controllerGuideContainer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/bannerAds"></com.google.android.gms.ads.AdView>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/controllerGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/noImage"
+            android:src="@drawable/controllerguide" />
+
+        <ImageButton
+            android:id="@+id/controllerGuideCloseButton"
+            style="@style/icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignEnd="@+id/controllerGuide"
+            android:src="@drawable/closebutton"/>
+
+    </RelativeLayout>
 </RelativeLayout>
