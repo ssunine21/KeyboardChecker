@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KeyboardChecker</string>
+    <string name="app_name">Game Controller Tester</string>
     <string name="noImage">no Image</string>
 
     <string name="esc">ESC</string>

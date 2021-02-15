@@ -45,8 +45,16 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
                 })
     }
 
-    override fun onPurchasesUpdated(p0: BillingResult, p1: MutableList<Purchase>?) {
-        TODO("Not yet implemented")
+    override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
+        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null){
+            for(purchase in purchases){
+                handlePurchase(purchase)
+            }
+        } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+            Toast.makeText(activity, "결제가 취되었습니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, "알 수 없는 오류::billing error", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun purchaseCheck() {

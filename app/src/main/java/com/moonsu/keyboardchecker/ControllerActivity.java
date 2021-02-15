@@ -56,6 +56,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         if(!isControllerGuideOpen){
             controllerGuideContainer.setVisibility(View.GONE);
+            backButton.setVisibility(View.VISIBLE);
         }
 
         //광고
