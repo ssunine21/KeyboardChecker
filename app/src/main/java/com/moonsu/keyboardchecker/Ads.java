@@ -1,38 +1,36 @@
 package com.moonsu.keyboardchecker;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
-import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
-class Ads extends RewardedAdCallback {
+class Ads {
 
-    private RewardedAd rewardedAd;
-    private InterstitialAd interstitialAd;
+    private RewardedAd mRewardedAd;
+    private InterstitialAd mInterstitialAd;
 
-    private final Context context;
-    private String rewardedId;
+    private final Activity context;
 
     private long REWARDED_PRESS_TIME = 0;
     private final long REWARDED_DELAY_TIME = 60000;
 
-    protected Ads(Context context){
+    protected Ads(Activity context){
         this.context = context;
 
         // 배너 광고
@@ -45,89 +43,55 @@ class Ads extends RewardedAdCallback {
     }
 
     public void createRewardAds(String AdsId){
-        rewardedId = AdsId;
-        rewardedAd = new RewardedAd(context, rewardedId);
-        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
-            @Override
-            public void onRewardedAdLoaded() {}
+        AdRequest adRequest = new AdRequest.Builder().build();
+        RewardedAd.load(context, AdsId,
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mRewardedAd = null;
+                    }
 
-            @Override
-            public void onRewardedAdFailedToLoad(LoadAdError loadAdError) {}
-        };
-        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+                    }
+                });
     }
 
     public void createInterstitialAds(String AdsId){
-        interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId(AdsId);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(context, AdsId, adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mInterstitialAd = null;
+                    }
 
-        loadInterstitialAds();
-
-        interstitialAd.setAdListener(new AdListener(){
-            @Override
-            public void onAdClosed() {
-                loadInterstitialAds();
-            }
-        });
-    }
-
-    private void loadInterstitialAds(){
-        interstitialAd.loadAd(new AdRequest.Builder().build());
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                         mInterstitialAd = interstitialAd;
+                    }
+                });
     }
 
     // load랑 show를 분기해서 loading될 시간을 주자
     public void showRewardedAds(final Activity activity, final Intent intent) {
         if (System.currentTimeMillis() > REWARDED_PRESS_TIME + REWARDED_DELAY_TIME) {
-            if (rewardedAd.isLoaded()) {
-                RewardedAdCallback adCallback = new RewardedAdCallback() {
-                    boolean ADS_RESULT = false;
-
-                    @Override
-                    public void onRewardedAdOpened() {
-                    }
-
-                    @Override
-                    public void onRewardedAdClosed() {
-                        if (ADS_RESULT) {
-                            REWARDED_PRESS_TIME = System.currentTimeMillis();
-                            activity.startActivity(intent);
-
-                            ADS_RESULT = false;
-                        }
-                    }
+            if (mRewardedAd != null) {
+                mRewardedAd.show(context, new OnUserEarnedRewardListener() {
 
                     @Override
                     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                        ADS_RESULT = true;
+                        REWARDED_PRESS_TIME = System.currentTimeMillis();
+                        activity.startActivity(intent);
                     }
-
-                    @Override
-                    public void onRewardedAdFailedToShow(AdError adError) {
-                    }
-                };
-                rewardedAd.show(activity, adCallback);
-                createAndLoadRewardedAd(rewardedId);
+                });
             } else {
                 showError();
             }
             return;
         }
         activity.startActivity(intent);
-    }
-
-    public void createAndLoadRewardedAd(String AdsId) {
-        RewardedAd rewardedAd = new RewardedAd(context, AdsId);
-        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
-            @Override
-            public void onRewardedAdLoaded() {
-            }
-
-            @Override
-            public void onRewardedAdFailedToLoad(LoadAdError adError) {
-            }
-        };
-        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
-        this.rewardedAd = rewardedAd;
     }
 
     public void createBannerAds(AdView view){
@@ -137,30 +101,14 @@ class Ads extends RewardedAdCallback {
 
     public void showInterstitialAds(){
         try {
-            if (interstitialAd.isLoaded()) {
-                interstitialAd.show();
+            if (mInterstitialAd != null) {
+                mInterstitialAd.show(context);
             } else {
                 showError();
             }
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onRewardedAdOpened() {
-    }
-
-    @Override
-    public void onRewardedAdClosed() {
-    }
-
-    @Override
-    public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-    }
-
-    @Override
-    public void onRewardedAdFailedToShow(AdError adError) {
     }
 
     private void showError(){

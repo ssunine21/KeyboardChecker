@@ -4,9 +4,13 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0f282079cd526ceb4bd9cf7bdf3ddf32/jetified-firebase-common-19.3.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/373263a52e13ce850fa773c9724d1962/jetified-firebase-common-19.3.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/44ab7d220f6c3596cd33a30aa83de024/jetified-firebase-common-19.3.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4915e382ee9cddbd3b68a3932a11ced5/jetified-firebase-common-19.3.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4915e382ee9cddbd3b68a3932a11ced5/jetified-firebase-common-19.3.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4915e382ee9cddbd3b68a3932a11ced5/jetified-firebase-common-19.3.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8ef570f9d9cfd10dbe32b95ec7206c8f/transformed/jetified-firebase-common-19.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8343fcc8af8647805b1bceff24d93fb3/jetified-firebase-common-19.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47bc7a584ae5c69c7fb4702dc0becf9a/jetified-firebase-common-19.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/486e3229f9eb0f9ccb3f144feadc9d96/transformed/jetified-firebase-common-19.3.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/486e3229f9eb0f9ccb3f144feadc9d96/transformed/jetified-firebase-common-19.3.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/486e3229f9eb0f9ccb3f144feadc9d96/transformed/jetified-firebase-common-19.3.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-common/19.3.1/673b70e6ad72ed1124321f2c092461689fe8d41a/firebase-common-19.3.1-javadoc.jar!/" />

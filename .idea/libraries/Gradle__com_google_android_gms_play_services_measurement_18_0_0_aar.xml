@@ -5,8 +5,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1431278a83fd6d6b31f9884253648a83/jetified-play-services-measurement-18.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/727735fe49cdf09ed8dc296136e7951b/jetified-play-services-measurement-18.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/837d872fac1e7de5af2bc5eb9f7b9d2d/jetified-play-services-measurement-18.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/837d872fac1e7de5af2bc5eb9f7b9d2d/jetified-play-services-measurement-18.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/837d872fac1e7de5af2bc5eb9f7b9d2d/jetified-play-services-measurement-18.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7105d1a03da3ec9cfea5c5bf1bb11081/transformed/jetified-play-services-measurement-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8964146f47836a123698a4280582f3e0/jetified-play-services-measurement-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8f2d4535db0d658a13eb01394f846f6a/jetified-play-services-measurement-18.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6cc913d7b1a971c5ce181c1a9e4b1fcc/transformed/jetified-play-services-measurement-18.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6cc913d7b1a971c5ce181c1a9e4b1fcc/transformed/jetified-play-services-measurement-18.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6cc913d7b1a971c5ce181c1a9e4b1fcc/transformed/jetified-play-services-measurement-18.0.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement/18.0.0/c23a245c010592199e4481a2fae912cb6e52705/play-services-measurement-18.0.0-javadoc.jar!/" />

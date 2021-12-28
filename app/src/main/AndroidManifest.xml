@@ -8,7 +8,6 @@
     <uses-permission android:name="com.android.vending.BILLING"/>
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/keyboardchecker_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_new"
@@ -16,7 +15,8 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
         <activity android:name=".MainActivity"
-            android:screenOrientation="sensorLandscape">
+            android:screenOrientation="sensorLandscape"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,7 +25,8 @@
 
         <activity android:name=".KeyboardActivity"
             android:screenOrientation="sensorLandscape"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -33,7 +34,8 @@
 
         <activity android:name=".MouseActivity"
             android:screenOrientation="sensorLandscape"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -41,7 +43,8 @@
 
         <activity android:name=".ControllerActivity"
             android:screenOrientation="sensorLandscape"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

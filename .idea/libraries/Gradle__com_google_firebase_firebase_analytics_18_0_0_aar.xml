@@ -4,9 +4,13 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/882fabdcfa3fef0657765565ecaddaf3/jetified-firebase-analytics-18.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b507862926ce111ce3afb6264a24df36/jetified-firebase-analytics-18.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/adad431aae27f65fdbacc2aa9bbbc040/jetified-firebase-analytics-18.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/944173fc8879d178e0cac47cde5819a8/jetified-firebase-analytics-18.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/944173fc8879d178e0cac47cde5819a8/jetified-firebase-analytics-18.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/944173fc8879d178e0cac47cde5819a8/jetified-firebase-analytics-18.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69517b7199949c736cebd022168969ef/transformed/jetified-firebase-analytics-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/29b8ca7078fcdcb84286dafaf42f0b0a/jetified-firebase-analytics-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d74fbd508cfbb432627454d1102496e/jetified-firebase-analytics-18.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6489b9731cfe96f00265ea4abb944e65/transformed/jetified-firebase-analytics-18.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6489b9731cfe96f00265ea4abb944e65/transformed/jetified-firebase-analytics-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6489b9731cfe96f00265ea4abb944e65/transformed/jetified-firebase-analytics-18.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-analytics/18.0.0/6a8b08d2a93001c8d089863beda57683994fb63d/firebase-analytics-18.0.0-javadoc.jar!/" />

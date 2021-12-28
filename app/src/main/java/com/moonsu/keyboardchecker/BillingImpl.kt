@@ -15,7 +15,21 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
     init {
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
-                purchaseCheck()
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    if(billingClient.queryPurchases(Definition.skuType).purchasesList?.size!! > 0) {
+                        for (purchase in billingClient.queryPurchases(Definition.skuType).purchasesList.orEmpty()) {
+                            when (purchase.purchaseState) {
+                                Purchase.PurchaseState.PURCHASED -> activity.setPremium()
+                                Purchase.PurchaseState.PENDING -> handlePurchase(purchase)
+                                else -> activity.setAds()
+                            }
+                        }
+                    } else {
+                        activity.setAds()
+                    }
+                } else {
+                    activity.setAds()
+                }
             }
 
             override fun onBillingServiceDisconnected() {
@@ -51,26 +65,14 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
                 handlePurchase(purchase)
             }
         } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
-            Toast.makeText(activity, "결제가 취되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "결제가 취소되었습니다.", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(activity, "알 수 없는 오류::billing error", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun purchaseCheck() {
+    private fun purchaseCheck(billingResult: BillingResult) {
         try {
-            if (billingClient.queryPurchases(Definition.skuType).responseCode == BillingClient.BillingResponseCode.OK) {
-                for (purchase in billingClient.queryPurchases(Definition.skuType).purchasesList.orEmpty()) {
-                    if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                        activity.setPremium()
-                        //activity.setAds()
-                    } else if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
-                        handlePurchase(purchase)
-                    } else {
-                        activity.setAds()
-                    }
-                }
-            }
         } catch (e: Exception) {
 
         }
@@ -89,6 +91,8 @@ class BillingImpl(val activity: MainActivity) : PurchasesUpdatedListener {
             } else {
                 activity.setPremium()
             }
+        } else{
+            activity.setAds()
         }
     }
 }

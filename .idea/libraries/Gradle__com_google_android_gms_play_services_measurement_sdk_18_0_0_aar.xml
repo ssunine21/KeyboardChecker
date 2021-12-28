@@ -4,9 +4,13 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/416b1979e9762013b3a496acc753792d/jetified-play-services-measurement-sdk-18.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/07be94758d2f38f98eba7328e98807d3/jetified-play-services-measurement-sdk-18.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/34ac73181306a55f3ccfe022b0d74a21/jetified-play-services-measurement-sdk-18.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0edab529b861dfbce61f97b9e4a6650/jetified-play-services-measurement-sdk-18.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0edab529b861dfbce61f97b9e4a6650/jetified-play-services-measurement-sdk-18.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0edab529b861dfbce61f97b9e4a6650/jetified-play-services-measurement-sdk-18.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/53a83048cc704b5801d185b1840cca91/transformed/jetified-play-services-measurement-sdk-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8103d40825a4d2847bd2fb8caa0a0817/jetified-play-services-measurement-sdk-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35af4d079c41f25ee6cefcd55b6d7984/jetified-play-services-measurement-sdk-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5a70dd4578c09d9c4e41f3d8f20b7c3a/transformed/jetified-play-services-measurement-sdk-18.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5a70dd4578c09d9c4e41f3d8f20b7c3a/transformed/jetified-play-services-measurement-sdk-18.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5a70dd4578c09d9c4e41f3d8f20b7c3a/transformed/jetified-play-services-measurement-sdk-18.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-sdk/18.0.0/6a8b08d2a93001c8d089863beda57683994fb63d/play-services-measurement-sdk-18.0.0-javadoc.jar!/" />
